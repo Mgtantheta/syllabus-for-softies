@@ -56,14 +56,14 @@ fun HomeScreen(
         ) {
             items(25) { index ->
                 // 各セルの内容をここで定義
-                GridCellItem(index)
+                GridCellItem(index, navController)
             }
         }
     }
 }
 
 @Composable
-fun GridCellItem(index: Int) {
+fun GridCellItem(index: Int, navController: NavController) {
     // グリッドセル内のコンテンツをここで作成
     // 例: テキストを表示
     Box(
@@ -71,7 +71,7 @@ fun GridCellItem(index: Int) {
             .padding(4.dp)
             .aspectRatio(1f / 2f)
             .shadow(4.dp)
-            .clickable {}
+            .clickable {navController.navigate("detail_screen")}
             .background(Color.LightGray)
     ) {
         Text(
