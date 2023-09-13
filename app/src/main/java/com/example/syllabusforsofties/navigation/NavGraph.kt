@@ -7,6 +7,7 @@ import androidx.navigation.compose.composable
 import com.example.syllabusforsofties.detail_screen.DetailScreen
 import com.example.syllabusforsofties.detail_screen.DetailScreenViewModel
 import com.example.syllabusforsofties.home_screen.HomeScreen
+import com.example.syllabusforsofties.home_screen.HomeScreenViewModel
 
 
 @Composable
@@ -20,7 +21,7 @@ fun SetupNavGraph(
         composable(
             route = Screen.Home.route
         ) {
-            HomeScreen(navController = navController)
+            HomeScreen(navController = navController, viewModel = HomeScreenViewModel())
         }
         composable(
             route = Screen.Detail.route
