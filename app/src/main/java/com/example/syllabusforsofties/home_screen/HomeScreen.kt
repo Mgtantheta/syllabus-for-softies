@@ -1,4 +1,5 @@
-package com.example.syllabusforsofties
+package com.example.syllabusforsofties.home_screen
+
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -23,7 +24,8 @@ import androidx.navigation.compose.rememberNavController
 
 @Composable
 fun HomeScreen(
-    navController: NavController
+    navController: NavController,
+    viewModel: HomeScreenViewModel
 ) {
     val daysOfWeek = listOf("Mon","Tue","Wed","Thu","Fri")
 
@@ -56,14 +58,14 @@ fun HomeScreen(
         ) {
             items(25) { index ->
                 // 各セルの内容をここで定義
-                GridCellItem(index, navController)
+                GridCellItem(navController, viewModel.courseThumbnailName[index])
             }
         }
     }
 }
 
 @Composable
-fun GridCellItem(index: Int, navController: NavController) {
+fun GridCellItem(navController: NavController, courseName: String) {
     // グリッドセル内のコンテンツをここで作成
     // 例: テキストを表示
     Box(
@@ -75,7 +77,7 @@ fun GridCellItem(index: Int, navController: NavController) {
             .background(Color.LightGray)
     ) {
         Text(
-            text = "Item $index",
+            text = courseName,
             modifier = Modifier.padding(4.dp)
         )
     }
@@ -85,6 +87,7 @@ fun GridCellItem(index: Int, navController: NavController) {
 @Composable
 fun HomeScreenPreview() {
     HomeScreen(
-        navController = rememberNavController()
+        navController = rememberNavController(),
+        viewModel = HomeScreenViewModel()
     )
 }
