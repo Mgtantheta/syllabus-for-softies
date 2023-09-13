@@ -1,4 +1,4 @@
-package com.example.syllabusforsofties
+package com.example.syllabusforsofties.home_screen
 
 import androidx.lifecycle.ViewModel
 
