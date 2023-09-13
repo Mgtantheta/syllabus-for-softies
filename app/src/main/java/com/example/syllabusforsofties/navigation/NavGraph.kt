@@ -1,13 +1,12 @@
 package com.example.syllabusforsofties.navigation
 
 import androidx.compose.runtime.Composable
-import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
-import com.example.syllabusforsofties.DetailScreen
-import com.example.syllabusforsofties.HomeScreen
+import com.example.syllabusforsofties.detail_screen.DetailScreen
+import com.example.syllabusforsofties.detail_screen.DetailScreenViewModel
+import com.example.syllabusforsofties.home_screen.HomeScreen
 
 
 @Composable
@@ -26,7 +25,7 @@ fun SetupNavGraph(
         composable(
             route = Screen.Detail.route
         ) {
-            DetailScreen(navController = navController)
+            DetailScreen(navController = navController, viewModel = DetailScreenViewModel())
         }
     }
 }
