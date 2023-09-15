@@ -21,6 +21,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.example.syllabusforsofties.FirestoreService
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
+import com.example.syllabusforsofties.data.FirestoreCourse
 
 
 @Composable
@@ -28,7 +34,8 @@ fun HomeScreen(
     navController: NavController,
     viewModel: HomeScreenViewModel
 ) {
-    val daysOfWeek = listOf("Mon","Tue","Wed","Thu","Fri")
+    val daysOfWeek = listOf("Mon", "Tue", "Wed", "Thu", "Fri")
+
 
     Column {
         // 曜日のタイトルを表示するLazyRow
@@ -57,32 +64,76 @@ fun HomeScreen(
                 .fillMaxSize(),
             horizontalArrangement = Arrangement.spacedBy(4.dp)
         ) {
-            items(25) { index ->
+            items(25) {
                 // 各セルの内容をここで定義
-                GridCellItem(navController, viewModel.courseThumbnailName[index])
+                GridCellItem(
+                    navController = navController,
+                    courseNames = viewModel.courseThumbnailName[it]
+                )
             }
         }
     }
 }
 
 @Composable
-fun GridCellItem(navController: NavController, courseName: String) {
-    // グリッドセル内のコンテンツをここで作成
-    // 例: テキストを表示
+fun GridCellItem(navController: NavController, courseNames: Any) {
+    val firestoreService = FirestoreService()
+    val scope = CoroutineScope(Job() + Dispatchers.Main)
+
     Box(
         modifier = Modifier
             .padding(4.dp)
             .aspectRatio(1f / 2f)
             .shadow(4.dp)
-            .clickable {navController.navigate("detail_screen")}
             .background(Color.LightGray)
+
     ) {
-        Text(
-            text = courseName,
-            fontSize = 13.sp,
-            fontWeight = FontWeight.Bold,
-            textAlign = TextAlign.Center,
-        )
+        // セル内のコンテンツを表示
+        Column(
+            modifier = Modifier.fillMaxSize(),
+            verticalArrangement = Arrangement.Center
+        ) {
+            when (courseNames) {
+                is String -> {
+                    // courseNamesがStringの場合
+                    Text(
+                        text = courseNames,
+                        fontSize = 13.sp,
+                        fontWeight = FontWeight.Bold,
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier
+                            .padding(8.dp)
+                            .clickable {
+                                // セルをクリックしたときの処理をここに記述
+                                scope.launch {
+                                    firestoreService.read(docNo = FirestoreCourse.C01.courseId)
+                                }
+                                navController.navigate("detail_screen")
+                            }
+                    )
+                }
+
+                is List<*> -> {
+                    // courseNamesがListの場合
+                    for (courseName in courseNames) {
+                        Text(
+                            text = courseName as? String ?: "",
+                            fontSize = 13.sp,
+                            fontWeight = FontWeight.Bold,
+                            textAlign = TextAlign.Center,
+                            modifier = Modifier
+                                .padding(8.dp)
+                                .clickable {
+                                    scope.launch {
+                                        firestoreService.read(docNo = FirestoreCourse.C02.courseId)
+                                    }
+                                    navController.navigate("detail_screen")
+                                }
+                        )
+                    }
+                }
+            }
+        }
     }
 }
 
