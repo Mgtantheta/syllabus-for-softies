@@ -45,7 +45,6 @@ class HomeScreenViewModel : ViewModel() {
             "CG幾何学",
             "統合情報システム学Ⅰ",
         ),
-
         "コース演習Ⅱ",
         "",
         "システムデザインPBL",
