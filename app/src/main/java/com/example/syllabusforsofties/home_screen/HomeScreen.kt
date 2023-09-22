@@ -21,22 +21,15 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.example.syllabusforsofties.FirestoreService
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
-import com.example.syllabusforsofties.data.FirestoreCourse
 
 
 @Composable
 fun HomeScreen(
     navController: NavController,
-    viewModel: HomeScreenViewModel
+    viewModel: HomeScreenViewModel,
+    onNavigateToDetailScreen: (String) -> Unit
 ) {
     val daysOfWeek = listOf("Mon", "Tue", "Wed", "Thu", "Fri")
-
-
     Column {
         // 曜日のタイトルを表示するLazyRow
         LazyRow(
@@ -77,9 +70,6 @@ fun HomeScreen(
 
 @Composable
 fun GridCellItem(navController: NavController, courseNames: Any) {
-    val firestoreService = FirestoreService()
-    val scope = CoroutineScope(Job() + Dispatchers.Main)
-
     Box(
         modifier = Modifier
             .padding(4.dp)
@@ -104,11 +94,7 @@ fun GridCellItem(navController: NavController, courseNames: Any) {
                         modifier = Modifier
                             .padding(8.dp)
                             .clickable {
-                                // セルをクリックしたときの処理をここに記述
-                                scope.launch {
-                                    firestoreService.read(docNo = FirestoreCourse.C01.courseId)
-                                }
-                                navController.navigate("detail_screen")
+                                navController.navigate("detail_screen/$courseNames")
                             }
                     )
                 }
@@ -124,10 +110,7 @@ fun GridCellItem(navController: NavController, courseNames: Any) {
                             modifier = Modifier
                                 .padding(8.dp)
                                 .clickable {
-                                    scope.launch {
-                                        firestoreService.read(docNo = FirestoreCourse.C02.courseId)
-                                    }
-                                    navController.navigate("detail_screen")
+                                    navController.navigate("detail_screen/$courseName")
                                 }
                         )
                     }
@@ -142,6 +125,7 @@ fun GridCellItem(navController: NavController, courseNames: Any) {
 fun HomeScreenPreview() {
     HomeScreen(
         navController = rememberNavController(),
-        viewModel = HomeScreenViewModel()
+        viewModel = HomeScreenViewModel(),
+        onNavigateToDetailScreen = {}
     )
 }
