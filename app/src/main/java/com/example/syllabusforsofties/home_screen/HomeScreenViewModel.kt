@@ -2,7 +2,7 @@ package com.example.syllabusforsofties.home_screen
 
 import androidx.lifecycle.ViewModel
 
-class HomeScreenViewModel: ViewModel() {
+class HomeScreenViewModel : ViewModel() {
     val courseThumbnailName = mutableListOf(
         // 一限
         "",
@@ -12,10 +12,16 @@ class HomeScreenViewModel: ViewModel() {
         "",
 
         // 二限
-        "自然言語処理\n分散システム実践論",
+        listOf(
+            "自然言語処理",
+            "分散システム実践論",
+        ),
         "統計解析Ⅱ",
         "コース演習Ⅱ",
-        "メディア論\n数値計算の理論と実際",
+        listOf(
+            "メディア論",
+            "数値計算の理論と実際"
+        ),
         "応用情報システム学",
 
         //3限
@@ -33,10 +39,18 @@ class HomeScreenViewModel: ViewModel() {
         "機械学習",
 
         // 5限
-        "CG幾何学\n統合情報システム学Ⅰ",
+        listOf(
+            "CG幾何学",
+            "統合情報システム学Ⅰ",
+        ),
         "コース演習Ⅱ",
         "",
         "システムデザインPBL",
-        "マイクロコンピュータ制御"
+        listOf(
+            "マイクロコンピュータ制御",
+            "情報環境論"
+        )
+
     )
+
 }

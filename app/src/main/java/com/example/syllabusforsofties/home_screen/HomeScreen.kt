@@ -15,6 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -25,10 +26,10 @@ import androidx.navigation.compose.rememberNavController
 @Composable
 fun HomeScreen(
     navController: NavController,
-    viewModel: HomeScreenViewModel
+    viewModel: HomeScreenViewModel,
+    onNavigateToDetailScreen: (String) -> Unit
 ) {
-    val daysOfWeek = listOf("Mon","Tue","Wed","Thu","Fri")
-
+    val daysOfWeek = listOf("Mon", "Tue", "Wed", "Thu", "Fri")
     Column {
         // 曜日のタイトルを表示するLazyRow
         LazyRow(
@@ -56,30 +57,66 @@ fun HomeScreen(
                 .fillMaxSize(),
             horizontalArrangement = Arrangement.spacedBy(4.dp)
         ) {
-            items(25) { index ->
+            items(25) {
                 // 各セルの内容をここで定義
-                GridCellItem(navController, viewModel.courseThumbnailName[index])
+                GridCellItem(
+                    navController = navController,
+                    courseNames = viewModel.courseThumbnailName[it]
+                )
             }
         }
     }
 }
 
 @Composable
-fun GridCellItem(navController: NavController, courseName: String) {
-    // グリッドセル内のコンテンツをここで作成
-    // 例: テキストを表示
+fun GridCellItem(navController: NavController, courseNames: Any) {
     Box(
         modifier = Modifier
             .padding(4.dp)
             .aspectRatio(1f / 2f)
             .shadow(4.dp)
-            .clickable {navController.navigate("detail_screen")}
             .background(Color.LightGray)
+
     ) {
-        Text(
-            text = courseName,
-            modifier = Modifier.padding(4.dp)
-        )
+        // セル内のコンテンツを表示
+        Column(
+            modifier = Modifier.fillMaxSize(),
+            verticalArrangement = Arrangement.Center
+        ) {
+            when (courseNames) {
+                is String -> {
+                    // courseNamesがStringの場合
+                    Text(
+                        text = courseNames,
+                        fontSize = 13.sp,
+                        fontWeight = FontWeight.Bold,
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier
+                            .padding(8.dp)
+                            .clickable {
+                                navController.navigate("detail_screen/$courseNames")
+                            }
+                    )
+                }
+
+                is List<*> -> {
+                    // courseNamesがListの場合
+                    for (courseName in courseNames) {
+                        Text(
+                            text = courseName as? String ?: "",
+                            fontSize = 13.sp,
+                            fontWeight = FontWeight.Bold,
+                            textAlign = TextAlign.Center,
+                            modifier = Modifier
+                                .padding(8.dp)
+                                .clickable {
+                                    navController.navigate("detail_screen/$courseName")
+                                }
+                        )
+                    }
+                }
+            }
+        }
     }
 }
 
@@ -88,6 +125,7 @@ fun GridCellItem(navController: NavController, courseName: String) {
 fun HomeScreenPreview() {
     HomeScreen(
         navController = rememberNavController(),
-        viewModel = HomeScreenViewModel()
+        viewModel = HomeScreenViewModel(),
+        onNavigateToDetailScreen = {}
     )
 }

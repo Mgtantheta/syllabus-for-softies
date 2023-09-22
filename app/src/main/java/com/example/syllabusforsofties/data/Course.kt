@@ -1,12 +1,13 @@
 package com.example.syllabusforsofties.data
 
 data class Course(
-    val term: String?,
-    val credits: String?,
-    val units: Int?,
-    val coursePlan: Map<String, String>?,
-    val textbook: String?,
-    val gradingMethod: Map<String, String>?,
-    val courseName: String?,
-    val instructors: List<String>?
+    val courseName: String?, //授業名
+    val term: String?, //開講期間
+    val credits: String?, // 単位数
+    val coursePlan: List<String>?, // 授業の計画
+    val textbook: String?, // 教科書
+    val gradingMethod: List<String>?, // 成績評価の方法
+    val instructors: List<String>?, // 担当教員
+    val courseObjectives: List<String>?, // 到達目標
+    val dividendYear: String? // 配当年
 )
