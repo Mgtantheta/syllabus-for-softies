@@ -5,13 +5,11 @@ import androidx.lifecycle.ViewModel
 class HomeScreenViewModel : ViewModel() {
     val courseThumbnailName = mutableListOf(
         // 一限
-
         "",
         "",
         "",
         "",
         "",
-
 
         // 二限
         listOf(
@@ -48,6 +46,11 @@ class HomeScreenViewModel : ViewModel() {
         "コース演習Ⅱ",
         "",
         "システムデザインPBL",
-        "マイクロコンピュータ制御"
+        listOf(
+            "マイクロコンピュータ制御",
+            "情報環境論"
+        )
+
     )
+
 }
