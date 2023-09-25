@@ -7,27 +7,8 @@ import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.tasks.await
 
 class DetailScreenViewModel : ViewModel() {
-
-    private val TAG = "DetailScreenViewModel"
-
-
     // Firestore インスタンスを初期化
     val db = Firebase.firestore
-    val docRef = db.collection("courses").document("C01")
-
-    init {
-        docRef.get()
-            .addOnSuccessListener { document ->
-                if (document != null) {
-                    Log.d(TAG, "DocumentSnapshot data: ${document.data}")
-                } else {
-                    Log.d(TAG, "No such document")
-                }
-            }
-            .addOnFailureListener { exception ->
-                Log.d(TAG, "get failed with ", exception)
-            }
-    }
 
     // ここにFirestoreからデータを取得する処理を書く
     fun getCourse(courseId: String): DocumentSnapshot? {
@@ -36,24 +17,21 @@ class DetailScreenViewModel : ViewModel() {
             .get()
             .addOnSuccessListener { document ->
                 if (document != null) {
-                    Log.d(TAG, "DocumentSnapshot data: ${document.data}")
                     course = document
                 } else {
-                    Log.d(TAG, "No such document")
+                    Log.d("TAG", "No such document")
                 }
             }
             .addOnFailureListener { exception ->
-                Log.d(TAG, "get failed with ", exception)
+                Log.d("TAG", "get failed with ", exception)
             }
-
         return course
     }
 
     // courseNameからcourseIdを取得する処理を書く
     suspend fun getCourseIDByCourseName(courseName: String): String? {
         // Firebase Firestoreから対応するドキュメントを検索
-        val firestore = Firebase.firestore
-        val querySnapshot = firestore.collection("courses")
+        val querySnapshot = db.collection("courses")
             .whereEqualTo("courseName", courseName)
             .get()
             .await()

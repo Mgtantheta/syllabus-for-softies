@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -18,7 +17,6 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -84,7 +82,7 @@ fun DetailScreenContent(course: Course?) {
         Log.d("Tag", "In DetailScreenContent ${course?.courseName}")
         PlanBox(title = "講義科目名", content = course?.courseName ?: "")
 
-        CoursePlanBox(title = "授業の計画", array = course?.coursePlan ?: listOf())
+        CoursePlanBox(title = "担当教員", array = course?.instructors ?: listOf())
 
         PlanBox(title = "配当年", content = course?.dividendYear ?: "")
 
@@ -94,9 +92,9 @@ fun DetailScreenContent(course: Course?) {
 
         PlanBox(title = "教科書", content = course?.textbook ?: "")
 
-        CoursePlanBox(title = "目標", array = course?.courseObjectives)
+        CoursePlanBox(title = "授業の計画", array = course?.coursePlan ?: listOf())
 
-        CoursePlanBox(title = "担当教員", array = course?.instructors ?: listOf())
+        CoursePlanBox(title = "成績評価の方法", array = course?.gradingMethod ?: listOf())
     }
 }
 
@@ -107,7 +105,6 @@ fun PlanBox(title: String, content: String) {
             .fillMaxWidth()
             .background(color = Color.LightGray)
             .padding(16.dp)
-            .clip(RoundedCornerShape(16.dp))
     ) {
         Column {
             Text(
@@ -133,7 +130,6 @@ fun CoursePlanBox(title: String, array: List<String>?) {
             .fillMaxWidth()
             .background(color = Color.LightGray)
             .padding(16.dp)
-            .clip(RoundedCornerShape(16.dp))
     ) {
         Column {
             Text(
@@ -144,7 +140,7 @@ fun CoursePlanBox(title: String, array: List<String>?) {
             // 1から15までのテキストを追加
             array?.forEachIndexed { index, content ->
                 Text(
-                    text = "${index + 1}: $content", // 講義内容に置き換えてください
+                    text = "${index + 1}: $content",
                     style = MaterialTheme.typography.bodyMedium,
                     modifier = Modifier.padding(start = 16.dp),
                     fontWeight = FontWeight.Bold
