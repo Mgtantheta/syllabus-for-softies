@@ -7,6 +7,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.example.syllabusforsofties.detail_screen.DetailScreen
+import com.example.syllabusforsofties.detail_screen.DetailScreenViewModel
 import com.example.syllabusforsofties.home_screen.HomeScreen
 import com.example.syllabusforsofties.home_screen.HomeScreenViewModel
 
@@ -36,7 +37,7 @@ fun SetupNavGraph(
                 })
         ) {
             val courseNamePram = it.arguments?.getString("courseNamePram") ?: ""
-            DetailScreen(navController = navController, courseNamePram = courseNamePram)
+            DetailScreen(navController = navController, courseNamePram = courseNamePram, viewModel = DetailScreenViewModel())
         }
     }
 }
