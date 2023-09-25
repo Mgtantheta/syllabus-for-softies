@@ -17,7 +17,7 @@ class HomeScreenViewModel : ViewModel() {
             "分散システム実践論",
         ),
         "統計解析Ⅱ",
-        "コース演習Ⅱ",
+        "コース演習Ⅱ(水2)",
         listOf(
             "メディア論",
             "数値計算の理論と実際"
@@ -43,7 +43,7 @@ class HomeScreenViewModel : ViewModel() {
             "CG幾何学",
             "統合情報システム学Ⅰ",
         ),
-        "コース演習Ⅱ",
+        "コース演習Ⅱ(火5)",
         "",
         "システムデザインPBL",
         listOf(
