@@ -53,7 +53,7 @@ fun GridCellItem(navController: NavController, courseNames: Any, viewModel: Home
     Box(
         modifier = Modifier
             .padding(4.dp)
-            .aspectRatio(1f / 3f)
+            .aspectRatio(ratio = 1f / 3f)
             .shadow(4.dp)
             .background(Color.LightGray)
     ) {
@@ -68,6 +68,7 @@ fun GridCellItem(navController: NavController, courseNames: Any, viewModel: Home
                     Text(
                         text = courseNames,
                         fontSize = 12.sp,
+                        fontWeight = FontWeight.Bold,
                         textAlign = TextAlign.Center,
                         fontWeight = FontWeight.Bold,
                         modifier = Modifier
@@ -85,6 +86,7 @@ fun GridCellItem(navController: NavController, courseNames: Any, viewModel: Home
                         Text(
                             text = courseName as? String ?: "",
                             fontSize = 12.sp,
+                            fontWeight = FontWeight.Bold,
                             textAlign = TextAlign.Center,
                             fontWeight = FontWeight.Bold,
                             modifier = Modifier
