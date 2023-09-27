@@ -9,5 +9,6 @@ data class Course(
     val gradingMethod: List<String>?, // 成績評価の方法
     val instructors: List<String>?, // 担当教員
     val courseObjectives: List<String>?, // 到達目標
-    val dividendYear: String? // 配当年
+    val dividendYear: String?, // 配当年
+    val place: String? // 開講場所
 )
