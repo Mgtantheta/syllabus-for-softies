@@ -11,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -52,7 +53,7 @@ fun GridCellItem(navController: NavController, courseNames: Any, viewModel: Home
     Box(
         modifier = Modifier
             .padding(4.dp)
-            .aspectRatio(1f / 2.5f)
+            .aspectRatio(1f / 3f)
             .shadow(4.dp)
             .background(Color.LightGray)
     ) {
@@ -68,8 +69,9 @@ fun GridCellItem(navController: NavController, courseNames: Any, viewModel: Home
                         text = courseNames,
                         fontSize = 12.sp,
                         textAlign = TextAlign.Center,
+                        fontWeight = FontWeight.Bold,
                         modifier = Modifier
-                            .padding(3.dp)
+                            .padding(4.dp)
                             .clickable {
                                 // courseNamesがcourse以外の時は遷移しない
                                 if (courseNames in viewModel.notClickableList) return@clickable
@@ -84,8 +86,9 @@ fun GridCellItem(navController: NavController, courseNames: Any, viewModel: Home
                             text = courseName as? String ?: "",
                             fontSize = 12.sp,
                             textAlign = TextAlign.Center,
+                            fontWeight = FontWeight.Bold,
                             modifier = Modifier
-                                .padding(3.dp)
+                                .padding(8.dp)
                                 .clickable {
                                     navController.navigate("detail_screen/$courseName")
                                 }
