@@ -24,10 +24,7 @@ fun SetupNavGraph(
             route = "home_screen"
         ) {
             HomeScreen(navController = navController,
-                viewModel = HomeScreenViewModel(),
-                onNavigateToDetailScreen = { courseNamePram ->
-                navController.navigate("detail_screen/$courseNamePram")
-            })
+                viewModel = HomeScreenViewModel())
         }
         composable(
             route = "detail_screen/{courseName}",
@@ -36,8 +33,7 @@ fun SetupNavGraph(
                     type = NavType.StringType
                 })
         ) {
-            val courseNamePram = it.arguments?.getString("courseNamePram") ?: ""
-            DetailScreen(navController = navController, courseNamePram = courseNamePram, viewModel = DetailScreenViewModel())
+            DetailScreen(navController = navController, viewModel = DetailScreenViewModel())
         }
     }
 }

@@ -31,7 +31,6 @@ import com.example.syllabusforsofties.data.Course
 @Composable
 fun DetailScreen(
     navController: NavController,
-    courseNamePram: String,
     viewModel: DetailScreenViewModel
 ) {
     // HomeScreenからNavigateされたデータを取得する
@@ -153,5 +152,5 @@ fun CoursePlanBox(title: String, array: List<String>?) {
 @Preview(showBackground = true)
 @Composable
 fun DetailScreenPreview() {
-    DetailScreen(navController = rememberNavController(), courseNamePram = "", viewModel = DetailScreenViewModel())
+    DetailScreen(navController = rememberNavController(), viewModel = DetailScreenViewModel())
 }
