@@ -64,40 +64,38 @@ fun GridCellItem(navController: NavController, courseNames: Any, viewModel: Home
         ) {
             when (courseNames) {
                 is String -> {
-                    // courseNamesがStringの場合
                     Text(
-                        text = courseNames,
+                        text = courseNames, // 文字列に変換
                         fontSize = 12.sp,
                         fontWeight = FontWeight.Bold,
                         textAlign = TextAlign.Center,
-                        fontWeight = FontWeight.Bold,
                         modifier = Modifier
                             .padding(4.dp)
                             .clickable {
-                                // courseNamesがcourse以外の時は遷移しない
                                 if (courseNames in viewModel.notClickableList) return@clickable
                                 navController.navigate("detail_screen/$courseNames")
                             }
                     )
                 }
                 is List<*> -> {
-                    // courseNamesがListの場合
                     for (courseName in courseNames) {
-                        Text(
-                            text = courseName as? String ?: "",
-                            fontSize = 12.sp,
-                            fontWeight = FontWeight.Bold,
-                            textAlign = TextAlign.Center,
-                            fontWeight = FontWeight.Bold,
-                            modifier = Modifier
-                                .padding(8.dp)
-                                .clickable {
-                                    navController.navigate("detail_screen/$courseName")
-                                }
-                        )
+                        if (courseName is String) {
+                            Text(
+                                text = courseName, // 文字列に変換
+                                fontSize = 12.sp,
+                                fontWeight = FontWeight.Bold,
+                                textAlign = TextAlign.Center,
+                                modifier = Modifier
+                                    .padding(8.dp)
+                                    .clickable {
+                                        navController.navigate("detail_screen/$courseName")
+                                    }
+                            )
+                        }
                     }
                 }
             }
+
         }
     }
 }
