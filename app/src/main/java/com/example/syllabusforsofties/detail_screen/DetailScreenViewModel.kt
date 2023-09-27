@@ -40,14 +40,14 @@ class DetailScreenViewModel : ViewModel() {
                 if (document.exists()) {
                     val term: String? = document.getString("開講期間")
                     val credits: String? = document.getString("単位数")
-                    val coursePlan: List<String>? = document.get("授業の計画") as List<String>?
+                    val coursePlan: List<String> = document.get("授業の計画") as? List<String> ?: emptyList()
                     val textbook: String? = document.getString("教科書")
-                    val gradingMethod: List<String>? = document.get("成績評価の方法") as List<String>?
+                    val gradingMethod: List<String> = document.get("成績評価の方法") as? List<String> ?: emptyList()
                     val courseName: String? = document.getString("講義科目名称")
-                    val instructors: List<String>? = document.get("担当教員") as List<String>?
-                    val courseObjective: List<String>? = document.get("到達目標") as List<String>?
+                    val instructors: List<String> = document.get("担当教員") as? List<String> ?: emptyList()
+                    val courseObjective: List<String> = document.get("到達目標") as? List<String> ?: emptyList()
                     val dividendYear: String? = document.getString("配当年")
-
+                    val place: String? = document.getString("開講場所")
                     Course(
                         courseName = courseName,
                         term = term,
@@ -57,7 +57,8 @@ class DetailScreenViewModel : ViewModel() {
                         gradingMethod = gradingMethod,
                         instructors = instructors,
                         courseObjectives = courseObjective,
-                        dividendYear = dividendYear
+                        dividendYear = dividendYear,
+                        place = place
                     )
                 } else {
                     Log.d("TAG", "No such document")

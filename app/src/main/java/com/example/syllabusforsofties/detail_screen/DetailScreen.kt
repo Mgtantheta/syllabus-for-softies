@@ -26,11 +26,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.syllabusforsofties.data.Course
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.tasks.await
-import kotlinx.coroutines.withContext
+
 
 @Composable
 fun DetailScreen(
@@ -86,6 +82,8 @@ fun DetailScreenContent(course: Course?) {
         CoursePlanBox(title = "担当教員", array = course?.instructors ?: listOf())
 
         PlanBox(title = "配当年", content = course?.dividendYear ?: "")
+
+        PlanBox(title = "開講場所", content = course?.place ?: "")
 
         PlanBox(title = "開講期間", content = course?.term ?: "")
 

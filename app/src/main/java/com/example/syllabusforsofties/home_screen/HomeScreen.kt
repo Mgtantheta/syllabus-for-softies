@@ -70,8 +70,9 @@ fun GridCellItem(navController: NavController, courseNames: Any, viewModel: Home
                         fontSize = 12.sp,
                         fontWeight = FontWeight.Bold,
                         textAlign = TextAlign.Center,
+                        fontWeight = FontWeight.Bold,
                         modifier = Modifier
-                            .padding(3.dp)
+                            .padding(4.dp)
                             .clickable {
                                 // courseNamesがcourse以外の時は遷移しない
                                 if (courseNames in viewModel.notClickableList) return@clickable
@@ -87,6 +88,7 @@ fun GridCellItem(navController: NavController, courseNames: Any, viewModel: Home
                             fontSize = 12.sp,
                             fontWeight = FontWeight.Bold,
                             textAlign = TextAlign.Center,
+                            fontWeight = FontWeight.Bold,
                             modifier = Modifier
                                 .padding(8.dp)
                                 .clickable {
