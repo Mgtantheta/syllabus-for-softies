@@ -1,4 +1,4 @@
-package com.example.syllabusforsofties.home_screen
+package jp.example.syllabusforsofties.home_screen
 
 
 import androidx.compose.foundation.background

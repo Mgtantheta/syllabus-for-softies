@@ -1,4 +1,4 @@
-package com.example.syllabusforsofties.ui.theme
+package jp.example.syllabusforsofties.ui.theme
 
 import android.app.Activity
 import android.os.Build

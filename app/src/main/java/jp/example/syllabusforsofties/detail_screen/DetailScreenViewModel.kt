@@ -1,7 +1,7 @@
-package com.example.syllabusforsofties.detail_screen
+package jp.example.syllabusforsofties.detail_screen
 import android.util.Log
 import androidx.lifecycle.ViewModel
-import com.example.syllabusforsofties.data.Course
+import jp.example.syllabusforsofties.data.Course
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.Dispatchers
