@@ -1,4 +1,4 @@
-package com.example.syllabusforsofties.navigation
+package jp.example.syllabusforsofties.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
@@ -6,10 +6,10 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import com.example.syllabusforsofties.detail_screen.DetailScreen
-import com.example.syllabusforsofties.detail_screen.DetailScreenViewModel
-import com.example.syllabusforsofties.home_screen.HomeScreen
-import com.example.syllabusforsofties.home_screen.HomeScreenViewModel
+import jp.example.syllabusforsofties.detail_screen.DetailScreen
+import jp.example.syllabusforsofties.detail_screen.DetailScreenViewModel
+import jp.example.syllabusforsofties.home_screen.HomeScreen
+import jp.example.syllabusforsofties.home_screen.HomeScreenViewModel
 
 
 @Composable
@@ -24,10 +24,8 @@ fun SetupNavGraph(
             route = "home_screen"
         ) {
             HomeScreen(navController = navController,
-                viewModel = HomeScreenViewModel(),
-                onNavigateToDetailScreen = { courseNamePram ->
-                navController.navigate("detail_screen/$courseNamePram")
-            })
+                viewModel = HomeScreenViewModel()
+            )
         }
         composable(
             route = "detail_screen/{courseName}",
@@ -36,8 +34,7 @@ fun SetupNavGraph(
                     type = NavType.StringType
                 })
         ) {
-            val courseNamePram = it.arguments?.getString("courseNamePram") ?: ""
-            DetailScreen(navController = navController, courseNamePram = courseNamePram, viewModel = DetailScreenViewModel())
+            DetailScreen(navController = navController, viewModel = DetailScreenViewModel())
         }
     }
 }

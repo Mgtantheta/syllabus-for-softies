@@ -1,4 +1,4 @@
-package com.example.syllabusforsofties.home_screen
+package jp.example.syllabusforsofties.home_screen
 
 
 import androidx.compose.foundation.background
@@ -24,8 +24,7 @@ import androidx.navigation.compose.rememberNavController
 @Composable
 fun HomeScreen(
     navController: NavController,
-    viewModel: HomeScreenViewModel,
-    onNavigateToDetailScreen: (String) -> Unit
+    viewModel: HomeScreenViewModel
 ) {
     Column{
         // グリッドのセルを表示するLazyVerticalGrid
@@ -106,6 +105,5 @@ fun HomeScreenPreview() {
     HomeScreen(
         navController = rememberNavController(),
         viewModel = HomeScreenViewModel(),
-        onNavigateToDetailScreen = {}
     )
 }

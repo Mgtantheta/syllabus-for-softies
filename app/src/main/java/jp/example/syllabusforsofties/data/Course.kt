@@ -1,4 +1,4 @@
-package com.example.syllabusforsofties.data
+package jp.example.syllabusforsofties.data
 
 data class Course(
     val courseName: String?, //授業名

@@ -15,9 +15,8 @@
         android:theme="@style/Theme.SyllabusForSofties"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name="jp.example.syllabusforsofties.MainActivity"
             android:exported="true"
-            android:label="@string/app_name"
             android:theme="@style/Theme.SyllabusForSofties">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

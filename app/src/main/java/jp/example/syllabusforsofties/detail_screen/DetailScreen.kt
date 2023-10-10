@@ -1,4 +1,4 @@
-package com.example.syllabusforsofties.detail_screen
+package jp.example.syllabusforsofties.detail_screen
 
 import android.util.Log
 import androidx.compose.foundation.background
@@ -25,13 +25,12 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.example.syllabusforsofties.data.Course
+import jp.example.syllabusforsofties.data.Course
 
 
 @Composable
 fun DetailScreen(
     navController: NavController,
-    courseNamePram: String,
     viewModel: DetailScreenViewModel
 ) {
     // HomeScreenからNavigateされたデータを取得する
@@ -153,5 +152,5 @@ fun CoursePlanBox(title: String, array: List<String>?) {
 @Preview(showBackground = true)
 @Composable
 fun DetailScreenPreview() {
-    DetailScreen(navController = rememberNavController(), courseNamePram = "", viewModel = DetailScreenViewModel())
+    DetailScreen(navController = rememberNavController(), viewModel = DetailScreenViewModel())
 }
